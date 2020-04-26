@@ -70,7 +70,7 @@
                 height: 100px;
             }
             .screenshot {
-                height: 500px;
+                width: 800px;
             }
             .footer {
                 margin-top: 30px;
@@ -86,6 +86,29 @@
                 color: #ffffff;
                 text-decoration: underline;
             }
+            .about {
+                margin-top: 30px;
+                width: 800px;
+                font-size: 11pt;
+                display: flex;
+                flex-direction: column;
+            }
+            .about-header {
+                text-align: center;
+            }
+            .about-body {
+                margin-top: 10px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .about-col {
+                text-align: justify;
+                margin-right: 20px;
+            }
+            .about-col:last-child {
+                margin-right: 0;
+            }
         </style>
     </head>
     <body>
@@ -97,6 +120,40 @@
                     Download <a href="https://github.com/rse/live-receiver/releases/tag/0.9.0">LiVE Receiver 0.9.0</a>:<br/>
                     <a href="https://github.com/rse/live-receiver/releases/download/0.9.0/LiVE-Receiver-win32-x64.zip">Windows/x64</a> |
                     <a href="https://github.com/rse/live-receiver/releases/download/0.9.0/LiVE-Receiver-darwin-x64.zip">macOS/x64</a>
+                </div>
+                <div class="about">
+                    <div class="about-header">
+                        <b>Live Video Experience (LiVE)</b> is an Open Source training broadcasting setup,<br/>
+                        developed by <i>Dr. Ralf S. Engelschall</i> and consisting of three particular components:
+                    </div>
+                    <div class="about-body">
+                        <div class="about-col">
+                            <b>LiVE Sender</b>:
+                            This component is run at the trainer-side of a LiVE session,
+                            sends the live video-stream via RTMPS to the LiVE Relay
+                            and receives the live event-stream via MQTTS from the LiVE Relay.
+                            It is primarily based on the Open Source software components
+                            Open Broadcaster Software (OBS) Studio,
+                            the Head-Up-Display Server (HUDS), and
+                            its Training HUD.
+                        </div>
+                        <div class="about-col">
+                            <b>LiVE Relay</b>:
+                            This component is run at the server-side of a LiVE session
+                            and relays the RTMPS video-stream and MQTTS event-stream betweeen the
+                            trainer and the trainees. It is primarily based
+                            on the Open Source software components
+                            SRS for RTMPS and Mosquitto for MQTTS.
+                        </div>
+                        <div class="about-col">
+                            <b>LiVE Receiver</b>:
+                            This component is run at the trainee-side of a LiVE session,
+                            receives the live video-stream via RTMPS from the LiVE Relay
+                            and sends the live event-stream via MQTTS to the LiVE Relay.
+                            It is primarily based on the Open Source software components
+                            Electron and FFMpeg.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>
