@@ -48,31 +48,59 @@
                 font-size: 12pt;
             }
             .screenshot {
-                width: 80vw;
+                width: 60vw;
             }
             .header {
                 font-size: 14pt;
                 text-align: center;
-                margin-bottom: 40px;
+                margin-bottom: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .subtitle {
+                margin-top: 20px;
+            }
+            .download {
+                border-radius: 10px;
+                margin-top: 20px;
+                width: 400px;
+                border: 1px solid #c0c0c0;
+                padding: 20px;
             }
             .logo {
                 height: 100px;
             }
             .footer {
-                margin-top: 40px;
+                margin-top: 30px;
                 font-size: 10pt;
                 text-align: center;
+                color: #909090;
+            }
+            a, a:visited, a:hover {
+                color: #f0f0f0;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #ffffff;
+                text-decoration: underline;
             }
         </style>
     </head>
     <body>
         <div class="page">
             <div class="header">
-                <img class="logo" src="logo.svg"/>
-                <div>Live Video Experience (LiVE)</div>
+                <img class="logo" src="logo.svg" alt="LiVE"/>
+                <div class="subtitle">Live Video Experience (LiVE)</div>
+                <div class="download">
+                    Download <a href="https://github.com/rse/live-receiver/releases/tag/0.9.0">LiVE Receiver 0.9.0</a>:<br/>
+                    <a href="https://github.com/rse/live-receiver/releases/download/0.9.0/LiVE-Receiver-win32-x64.zip">Windows/x64</a> |
+                    <a href="https://github.com/rse/live-receiver/releases/download/0.9.0/LiVE-Receiver-darwin-x64.zip">macOS/x64</a>
+                </div>
             </div>
             <div>
-                <a href="https://github.com/rse/live-receiver">
+                <a href="https://github.com/rse/live-receiver/releases/tag/0.9.0">
                     <img class="screenshot" src="live-receiver.png" alt="LiVE Receiver"/>
                 </a>
             </div>
