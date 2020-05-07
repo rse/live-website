@@ -30,7 +30,7 @@
         <meta charset="UTF-8"/>
         <style type="text/css">
             body {
-                background-color: #333333;
+                background-color: #282828;
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -63,10 +63,13 @@
                 padding: 20px;
             }
             .logo {
+            }
+            .logo .image {
                 height: 100px;
             }
             .screenshot {
-                width: 800px;
+                width: 900px;
+                margin-right: 10px;
             }
             .footer {
                 margin-top: 30px;
@@ -84,7 +87,7 @@
             }
             .about {
                 margin-top: 30px;
-                width: 800px;
+                width: 900px;
                 font-size: 11pt;
                 display: flex;
                 flex-direction: column;
@@ -99,7 +102,7 @@
                 justify-content: space-between;
             }
             .about-col {
-                text-align: justify;
+                text-align: left;
                 margin-right: 20px;
             }
             .about-col:last-child {
@@ -110,12 +113,14 @@
     <body>
         <div class="page">
             <div class="header">
-                <img class="logo" src="logo.svg" alt="LiVE"/>
-                <div class="subtitle">Live Video Experience (LiVE)</div>
+                <div class="logo">
+                    <img class="image" src="logo.svg" alt="LiVE"/>
+                    <div class="subtitle">Live Video Experience (LiVE)</div>
+                </div>
                 <div class="download">
-                    Download <a href="https://github.com/rse/live-receiver/releases/tag/0.9.4">LiVE Receiver 0.9.4</a>:<br/>
-                    <a href="https://github.com/rse/live-receiver/releases/download/0.9.4/LiVE-Receiver-win32-x64.zip">Windows/x64</a> |
-                    <a href="https://github.com/rse/live-receiver/releases/download/0.9.4/LiVE-Receiver-darwin-x64.zip">macOS/x64</a>
+                    Download <a href="https://github.com/rse/live-receiver/releases/tag/0.9.5">LiVE Receiver 0.9.5</a>:<br/>
+                    <a href="https://github.com/rse/live-receiver/releases/download/0.9.5/LiVE-Receiver-win32-x64.zip">Windows/x64</a> |
+                    <a href="https://github.com/rse/live-receiver/releases/download/0.9.5/LiVE-Receiver-darwin-x64.zip">macOS/x64</a>
                 </div>
                 <div class="about">
                     <div class="about-header">
@@ -126,8 +131,8 @@
                         <div class="about-col">
                             <b>LiVE Sender</b>:
                             This component is run at the trainer-side of a LiVE session,
-                            sends the live video-stream via RTMPS to the LiVE Relay
-                            and receives the live event-stream via MQTTS from the LiVE Relay.
+                            sends the video-stream via RTMPS to the LiVE Relay
+                            and receives the event-stream via MQTTS from the LiVE Relay.
                             It is primarily based on the Open Source software components
                             Open Broadcaster Software (OBS) Studio,
                             the Head-Up-Display Server (HUDS), and
@@ -144,18 +149,16 @@
                         <div class="about-col">
                             <b>LiVE Receiver</b>:
                             This component is run at the trainee-side of a LiVE session,
-                            receives the live video-stream via RTMPS from the LiVE Relay
-                            and sends the live event-stream via MQTTS to the LiVE Relay.
+                            receives the RTMPS video-stream from the LiVE Relay
+                            and sends the MQTTS event-stream to the LiVE Relay.
                             It is primarily based on the Open Source software components
-                            Electron and FFMpeg.
+                            Electron and FFmpeg.
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                <a href="https://github.com/rse/live-receiver/releases/tag/0.9.4">
-                    <img class="screenshot" src="live-receiver.png" alt="LiVE Receiver"/>
-                </a>
+                <img class="screenshot" src="LiVE-Receiver-Screenshot.png" alt="LiVE Receiver"/>
             </div>
             <div class="footer">
                 Copyright &copy; 2020 Dr. Ralf S. Engelschall
