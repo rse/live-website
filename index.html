@@ -28,6 +28,8 @@
     <head>
         <title>Live Video Experience (LiVE)</title>
         <meta charset="UTF-8"/>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.2/vue.global.prod.js"></script>
         <style type="text/css">
             body {
                 background-color: #282828;
@@ -35,6 +37,12 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
+            }
+            .invisible {
+                display: none;
+            }
+            .visible {
+                display: block;
             }
             .page {
                 margin-top: 40px;
@@ -117,16 +125,16 @@
         </style>
     </head>
     <body>
-        <div class="page">
+        <div class="page invisible" v-bind:class="{ visible: true }">
             <div class="header">
                 <div class="logo">
                     <img class="image" src="logo.svg" alt="LiVE"/>
                     <div class="subtitle">Live Video Experience (LiVE)</div>
                 </div>
                 <div class="download">
-                    Download <a href="https://github.com/rse/live-receiver/releases/tag/1.4.3">LiVE Receiver 1.4.3</a> for<br/>
-                    <a href="https://github.com/rse/live-receiver/releases/download/1.4.3/LiVE-Receiver-win-x64.zip">Windows/x64</a> or
-                    <a href="https://github.com/rse/live-receiver/releases/download/1.4.3/LiVE-Receiver-mac-x64.zip">macOS/x64</a>,<br/>
+                    Download <a v-bind:href="'https://github.com/rse/live-receiver/releases/tag/' + current.version">LiVE Receiver {{ current.version }}</a> ({{ current.date }})<br/>
+                    for <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-win-x64.zip'">Windows/x64</a> or
+                    <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-mac-x64.zip'">macOS/x64</a>,<br/>
                     and the <a href="https://github.com/rse/live-website/raw/master/LiVE-Flyer.pdf">LiVE Flyer</a> for a brief usage.
                 </div>
                 <div class="about">
@@ -144,7 +152,7 @@
                             solutions like ZOOM, Skype or Microsoft Teams.
                         </div>
                         <div class="about-col">
-                            <b>Unique Up-Front Training Features</b></a>:
+                            <b>Unique Up-Front Training Features</b>:
                             The trainer can mix his camera and the output of multiple input devices,
                             and use a Head-Up-Display (HUD) to enrich the resulting video-stream. The HUD
                             itself provides remote controllable display widgets: agenda, progress bar, training title,
@@ -203,4 +211,23 @@
             </div>
         </div>
     </body>
+    <script type="text/javascript">
+        axios.get("https://raw.githubusercontent.com/rse/live-receiver/master/VERSION.md").then(({ data }) => {
+            let versions = []
+            data.replace(
+                /^\|\s+([0-9]+(?:(?:a|b|rc|\.)[0-9]+)*)\s+\|\s+(\d{4}-\d{2}-\d{2})\s+\|\s+(\S+)\s+\|\s*$/mg,
+                (_, version, date, type) => { versions.push({ version, date, type }) })
+            current = versions.find((v) => v.type === "current")
+            Vue.createApp({
+                data () {
+                    return {
+                        current
+                    }
+                },
+                created () {
+                    this.$el
+                }
+            }).mount("body")
+        })
+    </script>
 </html>
