@@ -28,10 +28,13 @@
     <head>
         <title>Live Video Experience (LiVE)</title>
         <meta charset="UTF-8"/>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.2/vue.global.prod.js"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.2/vue.global.prod.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
         <style type="text/css">
             body {
                 background-color: #282828;
@@ -65,25 +68,42 @@
             }
             .subtitle {
                 margin-top: 20px;
-                color: #b0b0b0;
+                color: #c0c0c0;
+                font-weight: bold;
+                font-style: italic;
+                font-size: 15pt;
+                padding-right: 20px;
+            }
+            .top {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
             }
             .download {
                 border-radius: 10px;
-                margin-top: 20px;
                 width: 400px;
                 border: 1px solid #6699cc;
                 padding: 20px;
                 color: #6699cc;
                 line-height: 130%;
             }
+            .download p {
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            .download p + p {
+                margin-top: 8px;
+                margin-bottom: 0px;
+            }
             .download a, .download a:visited, .download a:hover {
                 color: #99ccff;
                 text-decoration: none;
             }
             .logo {
+                margin-right: 50px;
             }
             .logo .image {
-                height: 100px;
+                height: 130px;
             }
             .screenshot {
                 width: 900px;
@@ -131,16 +151,23 @@
     <body>
         <div class="page invisible" v-bind:class="{ visible: true }">
             <div class="header">
-                <div class="logo">
-                    <img class="image" src="logo.svg" alt="LiVE"/>
-                    <div class="subtitle">Live Video Experience (LiVE)</div>
-                </div>
-                <div class="download">
-                    Download <a v-bind:href="'https://github.com/rse/live-receiver/releases/tag/' + current.version">LiVE Receiver {{ current.version }}</a> ({{ current.date }})<br/>
-                    for <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-win-x64.zip'">Windows/x64</a>,
-                    <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-mac-x64.zip'">macOS/x64</a>, or
-                    <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-lnx-x64.zip'">Linux/x64</a>,<br/>
-                    and the <a href="https://github.com/rse/live-website/raw/master/LiVE-Flyer.pdf">LiVE Flyer</a> for a brief usage.
+                <div class="top">
+                    <div class="logo">
+                        <img class="image" src="logo.svg" alt="LiVE"/>
+                        <div class="subtitle">Live Video Experience (LiVE)</div>
+                    </div>
+                    <div class="download">
+                        <p>
+                        Download <a v-bind:href="'https://github.com/rse/live-receiver/releases/tag/' + current.version">LiVE Receiver {{ current.version }}</a> ({{ current.date }})<br/>
+                        for <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-win-x64.zip'">Windows/x64</a>,
+                        <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-mac-x64.zip'">macOS/x64</a>, or
+                        <a v-bind:href="'https://github.com/rse/live-receiver/releases/download/' + current.version + '/LiVE-Receiver-lnx-x64.zip'">Linux/x64</a>.<br/>
+                        </p>
+                        <p>
+                        Also check out the <a href="https://github.com/rse/live-website/raw/master/LiVE-Flyer.pdf">LiVE Flyer</a> (1 page, english) for a brief usage
+                        or watch the <a data-fancybox href="https://youtu.be/h9iBLNId5DA">LiVE Intro Video</a> (30 min, german) for a detailed usage and feature overview.
+                        </p>
+                    </div>
                 </div>
                 <div class="about">
                     <div class="about-header">
